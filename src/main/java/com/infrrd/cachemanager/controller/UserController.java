@@ -32,7 +32,6 @@ public class UserController {
 	@GetMapping("/user/{id}")
 	@Cacheable(value = "users", key = "#id")
 	public Users getUser(@PathVariable long id) {
-		System.out.print(id);
 		logger.debug(" >> UserController : /user/'{}' call : ",id);
 		return userService.getUser(id);
 
@@ -54,16 +53,16 @@ public class UserController {
 	@PutMapping("/update")
 	@CachePut(value = "users", key = "#user.id")
 	public Users updateUser(@RequestBody Users user) {
-		logger.debug(" >> UserController : /update : ", user.toString());
+		logger.debug(" >> UserController : /update : '{}'", user.toString());
 		return userService.update(user);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	@CacheEvict(value = "users", allEntries = false, key = "#id")
 	public void deleteUser(@PathVariable Long id) {
-		logger.debug(" >> UserController : /delete : ", id);
+		logger.debug(" >> UserController : /delete : '{}'", id);
 		userService.delete(id);
-		logger.debug(" << UserController : /delete : ", id);
+		logger.debug(" << UserController : /delete : '{}' ", id);
 
 	}
 
