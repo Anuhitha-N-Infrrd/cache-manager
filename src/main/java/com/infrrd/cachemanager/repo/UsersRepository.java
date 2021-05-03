@@ -1,15 +1,10 @@
 package com.infrrd.cachemanager.repo;
 
-import java.util.Map;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.infrrd.cachemanager.model.Users;
+import com.infrrd.cachemanager.entity.Users;
 
-public interface UsersRepository {
-	
-	void save(Users user);
-	Map<String, Users> findAll();
-	Users findById(String id);
-	void update(Users user);
-	void delete(String id);
-
+@Repository
+public interface UsersRepository extends JpaRepository<Users, Long> {
 }
